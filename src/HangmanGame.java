@@ -51,9 +51,9 @@ public class HangmanGame {
     }
 
     /**
-     * @param indexes
-     * @param letter
-     * @return
+     * @param indexes array with where the letter was found in the word
+     * @param letter the letter
+     * @return int HangmanGame.FOUND if the letter was found in the word, HangmanGame.NOT_FOUND if it wasn't.
      */
     private int found(int[] indexes, char letter) {
         current.setLetters(indexes, letter); //update the currently guessed word with the correct letter

@@ -5,14 +5,10 @@ public class HangmanRunner {
     static HangmanGame game;
     static Scanner in;
 
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         in = new Scanner(System.in);
 
         startNewGame();
-
-//		HangmanFrame frame = new HangmanFrame();
 
     }
 

@@ -33,5 +33,4 @@ public class Answer {
         return word;
     }
 
-
 }
