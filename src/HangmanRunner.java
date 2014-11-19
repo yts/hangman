@@ -1,15 +1,13 @@
-import javax.swing.*;
 import java.util.Scanner;
 
 public class HangmanRunner {
-    static HangmanGame game;
+    static HangmanRound game;
     static Scanner in;
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         in = new Scanner(System.in);
 
         startNewGame();
-
     }
 
     /**
@@ -37,7 +35,7 @@ public class HangmanRunner {
             System.out.println();
         }
 
-        game = new HangmanGame(word.toUpperCase()); //create new game
+        game = new HangmanRound(word.toUpperCase()); //create new game
         System.out.println("The secret word has been entered.");
 
         update();
@@ -99,26 +97,26 @@ public class HangmanRunner {
      * @param response the response given for the letter
      */
     static void processResponse(char letter, int response) {
-        if (response == HangmanGame.NOT_FOUND) {
+        if (response == HangmanRound.NOT_FOUND) {
             System.out.println("Nope!\n \"" + letter + "\" is not in the word.");
             update();
             newGuess();
-        } else if (response == HangmanGame.FOUND) {
+        } else if (response == HangmanRound.FOUND) {
             System.out.println("Correct!\n \"" + letter + "\" is in the word.");
             update();
             newGuess();
-        } else if (response == HangmanGame.LOST) {
+        } else if (response == HangmanRound.LOST) {
             System.out.println("Nope! \"" + letter + "\" is not in the word.");
             System.out.println("You have run out of chances. GAME OVER!\nThe answer was \"" + game.getAnswer() + ".\"");
             newGamePrompt();
-        } else if (response == HangmanGame.WON) {
+        } else if (response == HangmanRound.WON) {
             System.out.println("Correct! \"" + letter + "\" is in the word.");
             System.out.println("You completed the entire word! YOU WIN! \nThe word was \"" + game.getAnswer() + ".\"");
             newGamePrompt();
-        } else if (response == HangmanGame.GUESSED) {
+        } else if (response == HangmanRound.GUESSED) {
             System.out.println("You already guessed that letter.");
             newGuess();
-        } else if (response == HangmanGame.OVER) {
+        } else if (response == HangmanRound.OVER) {
             System.out.println("This game is already over.");
             newGamePrompt();
         }
@@ -141,11 +139,12 @@ public class HangmanRunner {
                 System.out.println("Ok, thanks for playing!");
 
                 try {
-                    Thread.sleep(1000); //give player a chance to read message. Program will then exit by itself
+                    Thread.sleep(1000); //give player a chance to read message
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.exit(0);
             } else {
                 System.out.println("I'm sorry, I didn't get that.");
             }

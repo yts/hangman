@@ -1,3 +1,6 @@
+/**
+ * The CurrentWord class represents the word as the player knows it at any given point during the game.
+ */
 public class CurrentWord {
     private char[] word;
     private char nullChar = '\u0000';
@@ -6,12 +9,21 @@ public class CurrentWord {
         word = new char[length];
     }
 
+    /**
+     * Updates the word with a letter the user guessed correctly
+     * @param indexes the indexes the letter occurs in in the answer
+     * @param letter the letter to be inserted in at the indexes
+     */
     public void setLetters(int[] indexes, char letter) {
         for (int i = 0; i < indexes.length; i++) {
             word[indexes[i]] = letter;
         }
     }
 
+    /**
+     * Gets the string representation of the current word. Unknown letters are shown as "*"
+     * @return the representation string
+     */
     public String toString() {
         String string = "";
 
@@ -26,24 +38,17 @@ public class CurrentWord {
         return string;
     }
 
+    /**
+     * Checks if the current word has been fully filled in
+     * @return true if every letter is filled in, false if there are still unknown letters
+     */
     public boolean isComplete() {
-        boolean complete = true;
-
         for (int i = 0; i < word.length; i++) {
             if (word[i] == nullChar) {
-                complete = false;
+                return false;
             }
         }
 
-        return complete;
-    }
-
-    public char[] getArray() {
-        char[] array = new char[word.length];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = word[i];
-        }
-
-        return array;
+        return true;
     }
 }

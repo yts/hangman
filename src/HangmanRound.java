@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class HangmanGame {
+public class HangmanRound {
     public static final int NOT_FOUND = 0;
     public static final int FOUND = 1;
     public static final int LOST = 2;
@@ -11,17 +11,17 @@ public class HangmanGame {
 
     private final int GUESSES = 6;
 
-    private ArrayList<Character> guessedLetters;
+    private ArrayList<Character> guessedLetters; //to hold the incorrectly guessed words by the player
     private Answer answer;
     private CurrentWord current;
     private int guessesRemaining;
 
     /**
-     * Creates a game to be played with a given word
+     * Creates a round to be played with a given word
      *
      * @param word the word to play with
      */
-    public HangmanGame(String word) {
+    public HangmanRound(String word) {
         guessedLetters = new ArrayList<>();
 
         guessesRemaining = GUESSES;
@@ -42,8 +42,7 @@ public class HangmanGame {
         if (guessedLetters.contains(letter)) return GUESSED; //letter was already guessed incorrectly
 
         int[] indexes = answer.checkFor(letter);
-        if (indexes.length > 0) //if letter was found at least once in the word
-        {
+        if (indexes.length > 0) {//if letter was found at least once in the word
             return found(indexes, letter);
         }
 
@@ -84,15 +83,20 @@ public class HangmanGame {
         return current.toString();
     }
 
-    public char[] getCurrentArray() {
-        return current.getArray();
-    }
-
+    /**
+     * Get the number of remaining guesses
+     * @return an integer with the number of guesses left
+     */
     public int guessesRemaining() {
         return guessesRemaining;
     }
 
+    /**
+     * Get the incorrectly guessed letters
+     * @return an array containing the letters
+     */
     public char[] getGuessed() {
+        //copy ArrayList to an array
         char[] guessedArr = new char[guessedLetters.size()];
         for (int i = 0; i < guessedArr.length; i++) {
             guessedArr[i] = guessedLetters.get(i);
@@ -101,11 +105,22 @@ public class HangmanGame {
         return guessedArr;
     }
 
+    /**
+     * Determines if game was already lost
+     * @return true if the game was lost, false if the player still has a chance
+     */
     public boolean isLost() {
         return guessesRemaining <= 0;
     }
 
+    /**
+     * Find out the answer to the game. If the game is not already won, this will lose the game.
+     * @return the secret word
+     */
     public String getAnswer() {
+        if (!current.isComplete()) {
+            guessesRemaining = 0;
+        }
         return answer.toString();
     }
 }

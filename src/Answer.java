@@ -12,7 +12,7 @@ public class Answer {
 
         //add the matching positions to the ArrayList
         int index = 0;
-        while (index >= 0 /*letter not found*/ && index < word.length()) {
+        while (index >= 0 /*letter found*/ && index < word.length()) {
             index = word.indexOf(attempt, index);
             if (index >= 0) {  //letter found in string
                 positions.add(index);
