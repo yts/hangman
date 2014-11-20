@@ -1,3 +1,5 @@
+package ytsdev;
+
 import java.util.Scanner;
 
 public class HangmanRunner {

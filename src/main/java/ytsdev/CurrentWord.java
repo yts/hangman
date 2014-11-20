@@ -1,9 +1,11 @@
+package ytsdev;
+
 /**
  * The CurrentWord class represents the word as the player knows it at any given point during the game.
  */
 public class CurrentWord {
     private char[] word;
-    private char nullChar = '\u0000';
+//    private char nullChar = '\u0000';
 
     public CurrentWord(int length) {
         word = new char[length];
@@ -28,7 +30,7 @@ public class CurrentWord {
         String string = "";
 
         for (int i = 0; i < word.length; i++) {
-            if (word[i] == nullChar) {
+            if (word[i] == 0x0) {
                 string += "*";
             } else {
                 string += word[i];
@@ -44,7 +46,7 @@ public class CurrentWord {
      */
     public boolean isComplete() {
         for (int i = 0; i < word.length; i++) {
-            if (word[i] == nullChar) {
+            if (word[i] == 0x0) {
                 return false;
             }
         }
