@@ -1,1 +1,1 @@
-Simple command line hangman game I made for fun.
+Simple command line hangman game I made for fun/practice.

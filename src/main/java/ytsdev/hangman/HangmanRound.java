@@ -1,4 +1,4 @@
-package ytsdev;
+package ytsdev.hangman;
 
 import java.util.ArrayList;
 

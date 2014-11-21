@@ -1,4 +1,4 @@
-package ytsdev;
+package ytsdev.hangman;
 
 /**
  * The CurrentWord class represents the word as the player knows it at any given point during the game.
